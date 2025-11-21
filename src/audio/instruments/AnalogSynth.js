@@ -31,5 +31,19 @@ export class AnalogSynth extends Instrument {
     trigger(note, time, duration) {
         const osc = this.ctx.createOscillator();
         const gain = this.ctx.createGain();
+
+        osc.type = this.type;
+        osc.frequency.setValueAtTime(440 * Math.pow(2, (note - 69) / 12), time);
+
+        osc.connect(gain);
+        gain.connect(this.output);
+
+        // Envelope
+        gain.gain.setValueAtTime(0, time);
+        gain.gain.linearRampToValueAtTime(0.5, time + 0.01); // Attack
+        gain.gain.exponentialRampToValueAtTime(0.001, time + duration); // Decay/Release
+
+        osc.start(time);
+        osc.stop(time + duration + 0.1);
     }
 }
