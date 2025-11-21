@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Synthsmithsia Music Maker</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <!-- Start Overlay -->
+    <div id="overlay">
+        <div class="modal">
+            <h1>Synthsmithsia Music Maker</h1>
+            <p style="color: var(--text-dim); margin: 20px 0;">Advanced Web Audio Workstation</p>
+            <button class="btn btn-primary" id="start-btn">CLICK TO START</button>
+        </div>
+    </div>
+
+    <div id="app-container">
+        <header>
+            <h1>SYNTHSMITHSIA</h1>
+            <div id="transport-controls">
+                <button class="btn" id="stop-btn">⏹</button>
+                <button class="btn btn-primary" id="play-btn">▶</button>
+                <span style="margin-left: 10px; color: var(--text-dim);">BPM: <input type="number" value="120"
+                        style="width: 50px; background: transparent; border: 1px solid #444; color: white; padding: 4px;"></span>
+            </div>
+            <div id="cpu-meter" style="color: var(--accent-secondary); font-size: 0.8rem;">CPU: 0%</div>
+        </header>
+
+        <div id="main-workspace">
+            <div id="sidebar">
+                <h3 style="font-size: 0.8rem; text-transform: uppercase; color: var(--text-dim); margin-bottom: 10px;">
+                    Instruments</h3>
+                <div id="instrument-list">
+                    <!-- Instruments will be injected here -->
+                    <div class="instrument-item active">1. Grand Piano (PhysMod)</div>
+                    <div class="instrument-item">2. Retro Lead (Saw)</div>
+                    <div class="instrument-item">3. Deep Bass (FM)</div>
+                    <div class="instrument-item">4. Drums (Hybrid)</div>
+                </div>
+                <button class="btn" style="width: 100%; margin-top: 10px;">+ Add Track</button>
+            </div>
+            <div id="grid-container">
+                <!-- Canvas for the tracker grid will go here -->
+                <canvas id="grid-canvas"></canvas>
+            </div>
+        </div>
+
+        <div id="bottom-panel">
+            <div id="visualizer-area">
+                <canvas id="viz-canvas"
+                    style="width: 100%; height: 100%; background: #000; border-radius: 4px;"></canvas>
+            </div>
+            <div id="params-area">
+                <!-- Dynamic parameters for selected instrument -->
+                <div style="color: var(--text-dim);">Select an instrument to edit parameters...</div>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="src/main.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,209 @@
+/* 
+ * Synthsmithsia Music Maker - Premium Dark Theme
+ * Design Philosophy: "Vibrant Darkness" - Deep blacks, neon accents, glassmorphism.
+ */
+:root {
+    --bg-core: #0a0a0c;
+    --bg-panel: #141418;
+    --bg-panel-trans: rgba(20, 20, 24, 0.8);
+    --accent-primary: #00ff9d;
+    /* Neon Mint */
+    --accent-secondary: #bd00ff;
+    /* Neon Purple */
+    --text-main: #ffffff;
+    --text-dim: #888899;
+    --border-color: #333340;
+    --glass-blur: 10px;
+    --font-main: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+    user-select: none;
+    /* App-like feel */
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: var(--bg-core);
+    color: var(--text-main);
+    font-family: var(--font-main);
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+/* --- Layout --- */
+#app-container {
+    display: grid;
+    grid-template-rows: 60px 1fr 200px;
+    /* Header, Main Grid, Bottom Panel */
+    height: 100%;
+    width: 100%;
+}
+
+header {
+    background: var(--bg-panel);
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+    justify-content: space-between;
+}
+
+h1 {
+    font-size: 1.2rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin: 0;
+}
+
+#main-workspace {
+    display: grid;
+    grid-template-columns: 250px 1fr;
+    /* Sidebar, Grid */
+    overflow: hidden;
+}
+
+#sidebar {
+    background: var(--bg-panel);
+    border-right: 1px solid var(--border-color);
+    padding: 10px;
+    overflow-y: auto;
+}
+
+#grid-container {
+    background: #111;
+    position: relative;
+    overflow: auto;
+    /* Grid pattern background */
+    background-image:
+        linear-gradient(var(--border-color) 1px, transparent 1px),
+        linear-gradient(90deg, var(--border-color) 1px, transparent 1px);
+    background-size: 40px 20px;
+    /* Width matches bar subdivision, Height matches track height */
+}
+
+#bottom-panel {
+    background: var(--bg-panel);
+    border-top: 1px solid var(--border-color);
+    padding: 10px;
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    gap: 20px;
+}
+
+/* --- Components --- */
+.btn {
+    background: #2a2a30;
+    border: 1px solid var(--border-color);
+    color: var(--text-main);
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: all 0.2s;
+}
+
+.btn:hover {
+    background: #3a3a40;
+    border-color: var(--text-dim);
+}
+
+.btn-primary {
+    background: var(--accent-primary);
+    color: #000;
+    border: none;
+    font-weight: bold;
+}
+
+.btn-primary:hover {
+    background: #00cc7d;
+}
+
+.instrument-item {
+    padding: 10px;
+    background: #222;
+    margin-bottom: 5px;
+    border-radius: 4px;
+    cursor: pointer;
+    border-left: 3px solid transparent;
+}
+
+.instrument-item.active {
+    background: #333;
+    border-left-color: var(--accent-primary);
+}
+
+/* --- Overlay --- */
+#overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal {
+    background: var(--bg-panel);
+    padding: 40px;
+    border-radius: 8px;
+    text-align: center;
+    border: 1px solid var(--accent-primary);
+    box-shadow: 0 0 20px rgba(0, 255, 157, 0.2);
+}
+
+/* --- Tooltips --- */
+.tooltip-icon {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    background: var(--border-color);
+    color: var(--text-dim);
+    border-radius: 50%;
+    text-align: center;
+    line-height: 16px;
+    font-size: 12px;
+    margin-left: 8px;
+    cursor: help;
+    position: relative;
+}
+
+.tooltip-icon:hover {
+    background: var(--accent-primary);
+    color: #000;
+}
+
+.tooltip-popup {
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--bg-panel);
+    border: 1px solid var(--accent-primary);
+    padding: 8px 12px;
+    border-radius: 4px;
+    width: 200px;
+    color: var(--text-main);
+    font-size: 0.8rem;
+    z-index: 1000;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.2s;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    margin-bottom: 8px;
+}
+
+.tooltip-icon:hover .tooltip-popup {
+    opacity: 1;
+}
